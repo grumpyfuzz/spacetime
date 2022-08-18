@@ -40,7 +40,7 @@ public class Game : MonoBehaviour
 
         }
 
-        if(GetScore() == 10 && !powerupScreen.firstPowerUp)
+        if(GetScore() == 100 && !powerupScreen.firstPowerUp)
         {
             Freeze();
             powerupScreen.Load();
