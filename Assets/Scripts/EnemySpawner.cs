@@ -32,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject ship = Spawn();
             Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, Random.Range(0f, 360f)) * Vector2.right);
-            ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(200f, 400f) * Time.deltaTime;
+            ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(125f, 275f) * Time.deltaTime;
             randtime = Random.Range(0.1f, 0.2f);
             timer = 0.0f;
         }
