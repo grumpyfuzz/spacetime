@@ -9,7 +9,6 @@ public class BulletController : MonoBehaviour
     float timer = 0.0f;
     
     public ParticleSystem explosion;
-    private ParticleSystem explode;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +27,6 @@ public class BulletController : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    void FixedUpdate(){
-        
-
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Bullet")
@@ -44,14 +38,22 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "EnemySpawner")
+        if (collision.tag != "Player" && collision.tag != "Powerup")
         {
-            explode = Instantiate(explosion);
+            GameObject explode = Instantiate(explosion.gameObject, transform.position, transform.rotation);
 
-            explode.Play();
+            //explode.Play();
+            Destroy(explode, explosion.main.duration);
 
+            Debug.Log("explosion");
             Destroy(gameObject);
             //check if clone to do damage possibly, original enemey spawner infinite health?
+        }
+
+        if (collision.tag == "EnemySpawner")
+        {
+            collision.gameObject.GetComponent<EnemySpawner>().health -= 2f;
+            collision.gameObject.GetComponent<EnemySpawner>().enemyHealthBar.UpdateHealthBar(collision.gameObject.GetComponent<EnemySpawner>().maxHealth, collision.gameObject.GetComponent<EnemySpawner>().health);
         }
 
 

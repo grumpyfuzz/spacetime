@@ -7,12 +7,15 @@ public class EnemySpawner : MonoBehaviour
     float timer = 0.0f;
     bool isClone = false;
     float randtime;
-    float health;
+    public float health;
+    public float maxHealth;
     public GameObject spawnPoint;
     public GameObject enemy;
     public GameObject increasedShootingSpeed;
     public GameObject healthIncrease;
     public GameObject moreSpawners;
+
+    public EnemyHealthBar enemyHealthBar;
  
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,10 @@ public class EnemySpawner : MonoBehaviour
         if(isClone)
         {
             Destroy(this.gameObject, 6f);
+            enemyHealthBar.gameObject.SetActive(false);
+        }
+        else{
+            enemyHealthBar.UpdateHealthBar(maxHealth, health);
         }
     }
 
@@ -32,11 +39,15 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject ship = Spawn();
             Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, Random.Range(0f, 360f)) * Vector2.right);
-            ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(125f, 275f) * Time.deltaTime;
+            ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(175f, 350f) * Time.deltaTime;
             randtime = Random.Range(0.1f, 0.2f);
             timer = 0.0f;
         }
         timer += Time.deltaTime;
+
+        if (health <= 0) {
+            Destroy(this.gameObject, 0.5f);
+        }
 
      
     }

@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1177506062455392619, guid: 3ad1c8db54c2d310b9af56b1cecb7960, type: 3}
       propertyPath: m_Name
-      value: powerUp
+      value: healthPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 1562413060247336188, guid: 3ad1c8db54c2d310b9af56b1cecb7960, type: 3}
       propertyPath: m_Size.x
@@ -39,6 +39,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: cc31304d283e3b7568ff0e9b031fba0a, type: 3}
+    - target: {fileID: 7192518573529192641, guid: 3ad1c8db54c2d310b9af56b1cecb7960, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192518573529192641, guid: 3ad1c8db54c2d310b9af56b1cecb7960, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 7781747256616551689, guid: 3ad1c8db54c2d310b9af56b1cecb7960, type: 3}
       propertyPath: m_RootOrder
       value: 0
