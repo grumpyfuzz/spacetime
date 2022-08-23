@@ -11,11 +11,16 @@ public class EnemySpawner : MonoBehaviour
     public float maxHealth;
     public GameObject spawnPoint;
     public GameObject enemy;
+    public GameObject aimedEnemy;
     public GameObject increasedShootingSpeed;
     public GameObject healthIncrease;
     public GameObject moreSpawners;
 
+    public GameObject player;
+
     public EnemyHealthBar enemyHealthBar;
+
+    bool aimed = false;
  
     // Start is called before the first frame update
     void Start()
@@ -38,15 +43,25 @@ public class EnemySpawner : MonoBehaviour
         if(timer > randtime)
         {
             GameObject ship = Spawn();
-            Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, Random.Range(0f, 360f)) * Vector2.right);
-            ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(175f, 350f) * Time.deltaTime;
-            randtime = Random.Range(0.1f, 0.2f);
-            timer = 0.0f;
+            if(aimed)
+            {
+                ship.GetComponent<Rigidbody2D>().velocity = ship.transform.up * Random.Range(175f, 350f) * Time.deltaTime;
+                randtime = Random.Range(0.15f, 0.25f);
+                timer = 0.0f;
+                aimed = false;
+                Debug.Log("AImed");
+            }else
+            {
+                Vector2 dir = (Vector2)(Quaternion.Euler(0, 0, Random.Range(0f, 360f)) * Vector2.right);
+                ship.GetComponent<Rigidbody2D>().velocity = dir * Random.Range(175f, 350f) * Time.deltaTime;
+                randtime = Random.Range(0.15f, 0.25f);
+                timer = 0.0f;
+            }
         }
         timer += Time.deltaTime;
 
         if (health <= 0) {
-            Destroy(this.gameObject, 0.5f);
+            //Destroy(this.gameObject, 0.5f);
         }
 
      
@@ -73,6 +88,15 @@ public class EnemySpawner : MonoBehaviour
         {
             return Instantiate(healthIncrease, spawnPoint.transform.position, Quaternion.Euler(0f, 0f, 0f));
         }
+        if (randNum >= 0.87f)
+        {
+            GameObject aimedTemp = Instantiate(aimedEnemy, spawnPoint.transform.position, Quaternion.Euler(0f, 0f,0f));
+            Vector3 diff = player.transform.position - spawnPoint.transform.position;
+            float rotation_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            aimedTemp.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, rotation_z - 90f);
+            aimed = true;
+            return aimedTemp;
+        }   
 
         
 

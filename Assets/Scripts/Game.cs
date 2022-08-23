@@ -63,7 +63,7 @@ public class Game : MonoBehaviour
         return Instance.score;
     }
 
-    public static bool GetIsPaused()
+    public static bool GetIsFrozen()
     {
         return Instance.isFrozen; 
     }

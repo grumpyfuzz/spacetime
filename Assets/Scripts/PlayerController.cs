@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         //transform.position = mousePosition;
         
         //point player towards cursor
-        if(!Game.GetIsPaused())
+        if(!Game.GetIsFrozen())
         {
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             difference.Normalize();
@@ -98,6 +98,9 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             // currently loads start menu but will want an alternative screen, add a delay too
             await Task.Delay(3000);
+            Game.Instance.Unfreeze();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+
+    
 }

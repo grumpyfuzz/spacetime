@@ -45,7 +45,6 @@ public class BulletController : MonoBehaviour
             //explode.Play();
             Destroy(explode, explosion.main.duration);
 
-            Debug.Log("explosion");
             Destroy(gameObject);
             //check if clone to do damage possibly, original enemey spawner infinite health?
         }

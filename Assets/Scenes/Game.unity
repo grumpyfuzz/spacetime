@@ -3331,9 +3331,17 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4116394041323967968, guid: c8330a0e395f721778503da88eec7f15, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 456697112}
+    - target: {fileID: 4116394041323967968, guid: c8330a0e395f721778503da88eec7f15, type: 3}
       propertyPath: maxHealth
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4116394041323967968, guid: c8330a0e395f721778503da88eec7f15, type: 3}
+      propertyPath: aimedEnemy
+      value: 
+      objectReference: {fileID: 3516259198249749005, guid: f5c064c4efdb035489e115ab55efed52, type: 3}
     - target: {fileID: 4116394041323967968, guid: c8330a0e395f721778503da88eec7f15, type: 3}
       propertyPath: enemyHealthBar
       value: 
